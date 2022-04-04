@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new MyXatsFragment()).commit();
 
         //Comentar
+        //Obtenemos un usuario de firebase
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void status(String status){
         //Comentar
+        //Cambia el estado del usuario
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users").child(firebaseUser.getUid());
 
         HashMap<String, Object> hashMap = new HashMap<>();
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Comentar
+    //Canvia el estado del usuario a conectado
     @Override
     protected void onResume(){
         super.onResume();
@@ -88,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Comentar
+    //Canvia el estado del usuario a desconectado
     @Override
     protected void onPause(){
         super.onPause();
@@ -95,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Comentar
+    //
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.top_menu, menu);
@@ -102,6 +107,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Comentar
+    //
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Log.i("TESTMENU", "hola" + item.getItemId());

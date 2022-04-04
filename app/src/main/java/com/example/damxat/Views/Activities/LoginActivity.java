@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //Comentar
+        //Coge un instanacia de fiarebase autentication
         auth = FirebaseAuth.getInstance();
 
         Button loginButton = findViewById(R.id.groupAdd);
@@ -33,6 +34,9 @@ public class LoginActivity extends AppCompatActivity {
         EditText loginPassword = findViewById(R.id.loginPassword);
 
         //Comentar
+        //Añade al boton de inicio un click listener que recoge con cada click
+        //el correo y la constraseña de sus respectivos campos
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,16 +44,19 @@ public class LoginActivity extends AppCompatActivity {
                 String password = loginPassword.getText().toString();
 
                 //Comentar
+                //Si estan vacíos lanza una notificación
                 if(email.isEmpty() || password.isEmpty()){
                     Toast.makeText(LoginActivity.this, "All fields are required.", Toast.LENGTH_SHORT).show();
                 }else{
                     //Comentar
+                    //Nos identificamos con esos campos
                     auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             //Comentar
                             if(task.isSuccessful()){
                                 //Comentar
+                                //Si todo sale bien vamos al main activity
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 startActivity(intent);
                             }else{
